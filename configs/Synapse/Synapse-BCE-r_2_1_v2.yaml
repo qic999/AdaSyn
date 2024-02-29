@@ -1,0 +1,24 @@
+MODEL:
+  LOSS_OPTION: [["WeightedBCEWithLogitsLoss"]]
+  LOSS_WEIGHT: [[1.0]]
+  WEIGHT_OPT: [["1"]]
+  OUTPUT_ACT: [["none"]]
+
+DATASET:
+  INPUT_PATH: /braindat/lab/qic/challenge/synapse_detection/data/training_set_new/
+  IMAGE_NAME:
+    - train_sample3_vol0/img.tif
+    - train_sample3_vol1/img.tif
+    - train_sample3_vol2/img.tif
+    - train_sample3_vol3/img.tif
+    - train_sample3_vol4/img.tif
+  LABEL_NAME:
+    - train_sample3_vol0/gt_r2_1.tif
+    - train_sample3_vol1/gt_r2_1.tif
+    - train_sample3_vol2/gt_r2_1.tif
+    - train_sample3_vol3/gt_r2_1.tif
+    - train_sample3_vol4/gt_r2_1.tif
+  OUTPUT_PATH: outputs/Synapse-BCE-r_2_1_v2/
+
+INFERENCE:
+  OUTPUT_PATH: outputs/Synapse-BCE-r_2_1_v2/test

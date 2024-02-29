@@ -1,0 +1,14 @@
+MODEL:
+  ARCHITECTURE: superhuman_iso_noda
+  LOSS_OPTION: [["WeightedBCE"]]
+  LOSS_WEIGHT: [[1.0]]
+  WEIGHT_OPT: [["1"]]
+  OUTPUT_ACT: [["none"]]
+  OUT_PLANES: 2
+
+DATASET:
+  OUTPUT_PATH: outputs/Synapse-BCE-r_3_2_superhuman_iso_noda/
+
+INFERENCE:
+  OUTPUT_ACT: ["none"]
+  OUTPUT_PATH: outputs/Synapse-BCE-r_3_2_superhuman_iso_noda/test

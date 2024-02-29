@@ -1,0 +1,73 @@
+SYSTEM:
+  NUM_GPUS: 1
+  NUM_CPUS: 6
+MODEL:
+  ARCHITECTURE: unet_3d # unet_plus_3d
+  BLOCK_TYPE: residual # residual_se
+  INPUT_SIZE: [128, 128, 128]
+  OUTPUT_SIZE: [128, 128, 128]
+  IN_PLANES: 1
+  OUT_PLANES: 3
+  TARGET_OPT: ["1"] # non-exclusive synaptic masks
+  LOSS_OPTION: [["WeightedBCE"]]
+  # NORM_MODE: gn
+  # FILTERS: [32, 64, 96, 128, 192]
+  # ISOTROPY: [False, False, False, True, True]
+  NORM_MODE: bn
+  FILTERS: [28, 36, 48, 64, 80]
+  ISOTROPY: [True, True, True, True, True]
+DATASET:
+  IS_ISOTROPIC: True
+  IMAGE_NAME:
+    - training_set/train_sample3_vol0/img.tif
+    - training_set/train_sample3_vol1/img.tif
+    - training_set/train_sample3_vol2/img.tif
+    - training_set/train_sample3_vol3/img.tif
+    - training_set/train_sample3_vol4/img.tif
+  LABEL_NAME:
+    - training_set_new/train_sample3_vol0/gt_r3_2.tif
+    - training_set_new/train_sample3_vol1/gt_r3_2.tif
+    - training_set_new/train_sample3_vol2/gt_r3_2.tif
+    - training_set_new/train_sample3_vol3/gt_r3_2.tif
+    - training_set_new/train_sample3_vol4/gt_r3_2.tif
+  UNLABLE_IMAGE_NAME:
+    - test_set/test_sample1_vol0/img_zyx_5500-6100_6000-6600_1800-2400.h5
+    - test_set/test_sample1_vol1/img_zyx_3400-4000_6962-7562_3865-4465.h5
+    - test_set/test_sample1_vol2/img_zyx_3166-3766_7531-8131_2440-3040.h5
+    - test_set/test_sample2_vol0/img_zyx_13070-13470_6940-7340_3370-3770.h5
+    - test_set/test_sample2_vol1/img_zyx_7138-7538_5790-6190_6948-7348.h5
+    - test_set/test_sample2_vol2/img_zyx_6800-7400_1800-2400_4200-4800.h5
+    - test_set/test_sample3_vol0/img_zyx_945-1345_3247-3647_4643-5043.h5
+    - test_set/test_sample3_vol1/img_zyx_2304-2720_2976-3392_6304-6720.h5
+    - test_set/test_sample3_vol2/img_zyx_2688-3104_5408-5824_2944-3360.h5
+
+  INPUT_PATH: /data/qic99/ISBI23_code/synapse_detection/data/
+  OUTPUT_PATH: outputs/Synapse_BCE/
+  PAD_SIZE: [64, 64, 64]
+  # DISTRIBUTED: True
+  REJECT_SAMPLING:
+    SIZE_THRES: 100
+    P: 0.95
+  # DATA_CHUNK_NUM: [20, 7, 8] # only for inference
+SOLVER:
+  LR_SCHEDULER_NAME: WarmupCosineLR
+  NAME: Adam
+  BASE_LR: 0.0001
+  ITERATION_STEP: 1
+  ITERATION_SAVE: 5000
+  ITERATION_TOTAL: 200000
+  SAMPLES_PER_BATCH: 1
+INFERENCE:
+  INPUT_SIZE: [128, 128, 128]
+  OUTPUT_SIZE: [128, 128, 128]
+  OUTPUT_ACT: ["sigmoid"]
+  IS_ABSOLUTE_PATH: False
+  INPUT_PATH: /data/qic99/ISBI23_code/synapse_detection/data/test_set/
+  IMAGE_NAME: test_sample1_vol0/img_zyx_5500-6100_6000-6600_1800-2400.h5
+  OUTPUT_PATH: outputs/Synapse_BCE/test
+  OUTPUT_NAME: result.h5
+  PAD_SIZE: [8, 128, 128]
+  AUG_MODE: mean
+  AUG_NUM: None
+  STRIDE: [16, 128, 128]
+  SAMPLES_PER_BATCH: 4

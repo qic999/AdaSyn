@@ -1,0 +1,9 @@
+MODEL:
+  LOSS_OPTION: [["WeightedBCEWithLogitsLoss"]]
+  LOSS_WEIGHT: [[1.0]]
+  WEIGHT_OPT: [["1"]]
+  OUTPUT_ACT: [["none"]]
+DATASET:
+  OUTPUT_PATH: outputs/Syn_BCE2/
+INFERENCE:
+  OUTPUT_PATH: outputs/Syn_BCE2/test
