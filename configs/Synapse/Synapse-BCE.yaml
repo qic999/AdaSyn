@@ -7,8 +7,8 @@ MODEL:
   OUT_PLANES: 2
 
 DATASET:
-  OUTPUT_PATH: outputs/Synapse-BCE-r_3_2_superhuman_iso_noda/
+  OUTPUT_PATH: outputs/Synapse-BCE/
 
 INFERENCE:
   OUTPUT_ACT: ["none"]
-  OUTPUT_PATH: outputs/Synapse-BCE-r_3_2_superhuman_iso_noda/test
+  OUTPUT_PATH: outputs/Synapse-BCE/test

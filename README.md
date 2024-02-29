@@ -19,6 +19,19 @@ University of Science and Technology of China<br/>
 ## ⏳ Dataset Link
 - [WASPSYN](https://codalab.lisn.upsaclay.fr/competitions/9169/)
 
+## Training
+```
+python scripts/main.py \
+--config-base configs/Synapse/Synapse-Base.yaml \
+--config-file configs/Synapse/Synapse-BCE.yaml
+```
+
+## Validation
+```
+python scripts/eval.py \
+--config-base configs/Synapse/Synapse-Base.yaml \
+--config-file configs/Synapse/Synapse-BCE.yaml
+```
 
 ## 💡 Acknowledgement
 This project is built upon previous projects. Especially, we'd like to thank the contributors of the following github repositories:
